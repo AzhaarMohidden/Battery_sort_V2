@@ -3,6 +3,8 @@ import sys
 # log_file = fn.list_dir(r'E:\Python\reader\Batterieverzeichnis')
 # fname = "E://Python/reader/Batterieverzeichnis/009768.txt"
 
+cwd = os.getcwd()
+
 def f_select():
     serial = str(input("Please input the Battery serial (e.g:- 456) :- "))
     file = "C://Azhaar_Data/Python/reader/Batterieverzeichnis/009" + serial + ".txt"
@@ -14,7 +16,8 @@ def f_select_vis(serials):
     return serial
 
 def read_text(fname, directory_file ):
-    fullname= "C://Azhaar_Data/Python/reader/"+ directory_file + "/009" + fname + ".txt"
+    # fullname= "C://Azhaar_Data/Python/reader/"+ directory_file + "/009" + fname + ".txt"
+    fullname= str(cwd)+"/reader/"+ directory_file + "/009" + fname + ".txt"
     l = open(fullname, encoding="utf-8")
     file_array = l.read().split('\n')
     # print(file_array)
@@ -52,7 +55,7 @@ def read_text(fname, directory_file ):
     # print("Raw Data********************************************")
     return Bat_Serial, LastOperation, LastOperationOn, MAX_Error, SOC, SOH, last_charge_unit, last_charge_position, File_length
 def read_text1(fname, directory_file = "Batterieverzeichnis_new" ):
-    fullname= "C://Azhaar_Data/Python/reader/"+ directory_file + "/009" + fname + ".txt"
+    fullname= str(cwd)+"/reader/"+ directory_file + "/009" + fname + ".txt"
     l = open(fullname, encoding="utf-8")
     file_array = l.read().split('\n')
     # print(file_array)
@@ -90,7 +93,7 @@ def read_text1(fname, directory_file = "Batterieverzeichnis_new" ):
     # print("Raw Data********************************************")
     return Bat_Serial, LastOperation, LastOperationOn, MAX_Error, SOC, SOH, last_charge_unit, last_charge_position, File_length
 def read_text1_vis(fname, directory_file = "Batterieverzeichnis_new" ):
-    fullname= "C://Azhaar_Data/Python/reader/"+ directory_file + "/009" + fname + ".txt"
+    fullname= str(cwd)+"/reader/"+ directory_file + "/009" + fname + ".txt"
     l = open(fullname, encoding="utf-8")
     file_array = l.read().split('\n')
     # print(file_array)
