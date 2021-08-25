@@ -1,0 +1,5 @@
+Serialnumber ; Date ; Time ; Action ; Date of Manufacture ; Manufacturer ; Battery Name ; Device-Chemistry ; Specification-Info ; Design-Capacity [mAh] ; Design-Voltage [mV] ; Battery Status ; Cycle Count ; SOC [%] ; Relativ SOC[%] ; Desired Voltage [mV]; Desired Current [mA]; Cell Voltage 1 [mV] ; Cell Voltage 2 [mV] ; Max_Error [%] ; Busvoltage[mV] ; Battery Temperature [°C] ; Charger Temperature [°C] ; Batterysystem ; Case ; PLace
+009758;07.02.2021;08:47:00;Normalcharge  ;04.12.2018;FEY;;LION;49;14500;7200;192;3;90;92;8400;3000;4063;4063;1;13007;23.74;25.04;29,2;BCS1388054;4;12
+009758;07.02.2021;11:52:20;Stop          ;04.12.2018;FEY;;LION;49;14500;7200;224;3;98;100;8400;;4150;4150;1;13008;25.74;25.74;29,7;BCS1388054;4;12
+009758;03.03.2021;08:17:46;Normalcharge  ;04.12.2018;FEY;;LION;49;14500;7200;2768;5;;;8400;3000;3046;3070;1;13027;23.14;23.64;23,6;BCS1388054;7;17
+009758;03.03.2021;10:54:05;Stop          ;04.12.2018;FEY;;LION;49;14500;7200;128;5;30;32;8400;3000;3675;3625;1;12689;30.24;36.44;31,4;BCS1388054;7;17
