@@ -7,12 +7,14 @@ cwd = os.getcwd()
 
 def f_select():
     serial = str(input("Please input the Battery serial (e.g:- 456) :- "))
-    file = "C://Azhaar_Data/Python/reader/Batterieverzeichnis/009" + serial + ".txt"
+    file = str(cwd) +"/reader/Batterieverzeichnis/009" + serial + ".txt"
+    # file = "C://Azhaar_Data/Python/reader/Batterieverzeichnis/009" + serial + ".txt"
     return serial
 
 def f_select_vis(serials):
     serial = str(serials)
-    file = "C://Azhaar_Data/Python/reader/Batterieverzeichnis/009" + serial + ".txt"
+    file = str(cwd) +"/reader/Batterieverzeichnis/009" + serial + ".txt"
+    # file = "C://Azhaar_Data/Python/reader/Batterieverzeichnis/009" + serial + ".txt"
     return serial
 
 def read_text(fname, directory_file ):
