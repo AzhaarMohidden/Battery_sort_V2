@@ -1,6 +1,8 @@
 
 import random
 from datetime import datetime
+import os
+cwd = os.getcwd()
 
 # arr_temp = [[0 for i in range(2)] for j in range(18)]
 # arr_rec = [["000" for i in range(8)] for j in range(125)]
@@ -240,11 +242,17 @@ def Output_multiple(unit, arr_temp, textfilename):
         now_1 = datetime.now()
         date_time = now_1.strftime("%Y%m%d_%H%M%S")
         if (textfilename == "Sorted"):
-            name1 = "C:\Azhaar_Data\Python\Logs\Sorted"+ "\\" + str(date_time) + ".txt"
+            # Commented out to make make path dynmic
+            # name1 = "C:\Azhaar_Data\Python\Logs\Sorted"+ "\\" + str(date_time) + ".txt"
+            name1 = str(cwd)+"\Logs\Sorted"+ "\\" + str(date_time) + ".txt"
         elif (textfilename == "Current"):
-            name1 = "C:\Azhaar_Data\Python\Logs\Current"+ "\\" + str(date_time) + ".txt"
+            # Commented out to make make path dynmic
+            # name1 = "C:\Azhaar_Data\Python\Logs\Current"+ "\\" + str(date_time) + ".txt"
+            name1 = str(cwd)+"\Logs\Current"+ "\\" + str(date_time) + ".txt"
         else:
-             name1 = "C:\Azhaar_Data\Python\Logs\Dump"+ "\\" + str(date_time) + ".txt"
+            # Commented out to make make path dynmic
+             # name1 = "C:\Azhaar_Data\Python\Logs\Dump"+ "\\" + str(date_time) + ".txt"
+             name1 = str(cwd)+"\Logs\Dump"+ "\\" + str(date_time) + ".txt"
 
         # name1 = "C:\Azhaar_Data\Python\Logs"+ "\\" + "Test" + ".txt"
         print(name1)
