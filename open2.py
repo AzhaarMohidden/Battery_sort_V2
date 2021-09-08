@@ -40,13 +40,13 @@ def Canny(source, ad1, ad2):
     # cv2.imshow("gray Image", Canny)
     return Canny
 
-def shape_def(source):
+def shape_def(source, gray):
     peri = cv2.arcLength(source, True)
     approx = cv2.approxPolyDP(source, 0.03* peri, True)
     # print(len(approx))
     objCor = len(approx)
-    if objCor == 3: shape = "Triangle"
-    elif objCor == 4:
+    # if objCor == 3: shape = "Triangle"
+    if objCor == 4:
         x, y, w, h = cv2.boundingRect(approx)
         if(y!=0):
             r = x/y
@@ -54,7 +54,8 @@ def shape_def(source):
             r = 1
         global det_num
         if(50>r>0):
-            cropped = imagecon[y:y + h, x:x + w]
+            # cropped = imagecon[y:y + h, x:x + w]
+            cropped = gray[y+4:y + h-4, x+4:x + w-4]
             # cv2.rectangle(imagecon, (x, y), (x + w, y + h), (0 ,0 ,255), 2,)
             shape = "Qadrilateral"
             # cv2.putText(imagecon, shape, ((x+w)+5, y), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0,0,240),1)
@@ -89,6 +90,7 @@ def shape_def(source):
                     cv2.ellipse(imagecon, ((x)-60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 # cv2.moveWindow(imagecon, 0,0)
                 cv2.imshow('Last_Battery', imagecon)
+                # cv2.imshow('cropped', cropped)
 
             except:
                 pass
@@ -109,6 +111,7 @@ def shape_def(source):
 
 def get_contours(source):
     grey = gry_img(source)
+    (thresh, imgBW) = cv2.threshold(grey, 127, 255, cv2.THRESH_BINARY)
     g_blur = Gausian_Blur(grey,7,7,0)
     # lower, upper = track_values() ##Image controller
     imgresize1 = Canny(g_blur, 180,180)# low 0, uper 33
@@ -121,7 +124,8 @@ def get_contours(source):
             # print(area)
 
             cv2.drawContours(imagecon, cnt, -1, (255,0,0),2)
-            shape_def(cnt)
+            shape_def(cnt, imgBW)
+            # shape_def(cnt)
 
 def face_detect(source):
     imgresize = cv2.resize(source,(480, 320)) #Resize image
