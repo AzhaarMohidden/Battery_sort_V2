@@ -15,6 +15,7 @@ pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesse
 
 det_num = 0
 
+# Image controller bar values
 # def track_values():
 #     h_min = int(ic.Hue_min_val())
 #     s_min = int(ic.Sat_min_val())
@@ -109,7 +110,7 @@ def shape_def(source):
 def get_contours(source):
     grey = gry_img(source)
     g_blur = Gausian_Blur(grey,7,7,0)
-    # lower, upper = track_values()
+    # lower, upper = track_values() ##Image controller
     imgresize1 = Canny(g_blur, 180,180)# low 0, uper 33
     # print(upper[0])
     contours, hierarchy = cv2.findContours(imgresize1, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
