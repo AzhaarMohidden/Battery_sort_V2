@@ -1,7 +1,7 @@
 import cv2
 from time import sleep
 import numpy as np
-import image_controller as ic
+# import image_controller as ic
 from reader import Log_reader as lg_r
 import pytesseract
 import threading
@@ -15,14 +15,14 @@ pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesse
 
 det_num = 0
 
-def track_values():
-    h_min = int(ic.Hue_min_val())
-    s_min = int(ic.Sat_min_val())
-    v_min = int(ic.Val_min_val())
-    h_max = int(ic.Hue_max_val())
-    s_max = int(ic.Sat_max_val())
-    v_max = int(ic.Val_max_val())
-    return np.array([h_min,s_min,v_min]), np.array([h_max,s_max,v_max])
+# def track_values():
+#     h_min = int(ic.Hue_min_val())
+#     s_min = int(ic.Sat_min_val())
+#     v_min = int(ic.Val_min_val())
+#     h_max = int(ic.Hue_max_val())
+#     s_max = int(ic.Sat_max_val())
+#     v_max = int(ic.Val_max_val())
+#     return np.array([h_min,s_min,v_min]), np.array([h_max,s_max,v_max])
 
 def gry_img(source):
     gry = cv2.cvtColor(source, cv2.COLOR_BGR2GRAY) #Gray Conversion
@@ -109,7 +109,7 @@ def shape_def(source):
 def get_contours(source):
     grey = gry_img(source)
     g_blur = Gausian_Blur(grey,7,7,0)
-    lower, upper = track_values()
+    # lower, upper = track_values()
     imgresize1 = Canny(g_blur, 180,180)# low 0, uper 33
     # print(upper[0])
     contours, hierarchy = cv2.findContours(imgresize1, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
