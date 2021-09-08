@@ -54,7 +54,7 @@ def shape_def(source):
         global det_num
         if(50>r>0):
             cropped = imagecon[y:y + h, x:x + w]
-            cv2.rectangle(imagecon, (x, y), (x + w, y + h), (0 ,0 ,255), 2,)
+            # cv2.rectangle(imagecon, (x, y), (x + w, y + h), (0 ,0 ,255), 2,)
             shape = "Qadrilateral"
             # cv2.putText(imagecon, shape, ((x+w)+5, y), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0,0,240),1)
             text = str(pytesseract.image_to_string(cropped))
@@ -86,6 +86,8 @@ def shape_def(source):
                     cv2.putText(imagecon, ser, ((x)-200,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, soc_1, ((x)-100,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x)-60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
+                # cv2.moveWindow(imagecon, 0,0)
+                cv2.imshow('Last_Battery', imagecon)
 
             except:
                 pass
@@ -111,13 +113,13 @@ def get_contours(source):
     imgresize1 = Canny(g_blur, 180,180)# low 0, uper 33
     # print(upper[0])
     contours, hierarchy = cv2.findContours(imgresize1, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    cv2.imshow("Canny" , imgresize1)
+    # cv2.imshow("Canny" , imgresize1)
     for cnt in contours:
         area = cv2.contourArea(cnt)
         if area> 500:
             # print(area)
 
-            # cv2.drawContours(imagecon, cnt, -1, (255,0,0),3)
+            cv2.drawContours(imagecon, cnt, -1, (255,0,0),2)
             shape_def(cnt)
 
 def face_detect(source):
@@ -238,7 +240,9 @@ if __name__ == "__main__":
     while True:
         f=f+1
         success, img = cap.read()
-        imgresize = cv2.resize(img,(640, 480)) #Resize image
+        # imgresize = cv2.resize(img,(640, 480)) #Resize image
+        imgresize = img #Resize image
+        # imgresize = cv2.resize(img,(1920, 1080)) #Resize image
         imagecon = imgresize.copy()
 
         # grey = gry_img(imgresize)
