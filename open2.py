@@ -231,6 +231,10 @@ is_alive = 1
 real_rate = 0
 
 if __name__ == "__main__":
+    # print("1. OCR Reader")
+    # print("2. QR Reader")
+    # user_selection=input("Please Select the Read Method: ")
+    
     cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture(0)
     # cap.set(3,600) # 3 is width setting id
@@ -242,6 +246,9 @@ if __name__ == "__main__":
     # sh = frame_rate(f)
     threading.Thread(target=frame_rate).start()
     detector = cv2.QRCodeDetector()
+
+    # if (user_selection==1):
+    #     print("")
     while True:
         f=f+1
         success, img = cap.read()

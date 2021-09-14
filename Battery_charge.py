@@ -31,7 +31,7 @@
 # | |              | || |              | || |              | || |              | |
 # | '--------------' || '--------------' || '--------------' || '--------------' |
 #  '----------------'  '----------------'  '----------------'  '----------------'
-# repo: https://github.com/AzhaarMohidden/Battery_sort
+# repo: https://github.com/AzhaarMohidden/Battery_sort_V2.git
 # date: 31.03.2021
 # Prereq:
 #     1. xlxswriter
