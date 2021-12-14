@@ -65,9 +65,10 @@ def shape_def(source, gray):
                 num = int(text)
                 print("Serial: "+ str(num))
                 # cv2.putText(imagecon, str(num), ((x+w)+5, y), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0,0,240),1)
-                ser, soc = lg_r.info_read_vis(num)
+                ser, soc, Last_op = lg_r.info_read_vis(num)
                 print("SOC: "+ str(soc))
                 ser  = "Serial: " + str(ser)
+                Last_op  = "L_OP: " + str(Last_op)
                 pers=int(soc)
                 soc_1  = str(soc) +"%"
                 # cv2.putText(imagecon, ser, ((x+w)+5, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),1)
@@ -80,12 +81,14 @@ def shape_def(source, gray):
                     cv2.line(imagecon, ((x+w), y), ((x+w)+20,y-20), (0 ,0 ,255), 1,)
                     cv2.line(imagecon, ((x+w)+20,y-20), ((x+w)+200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x+w)+20,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
+                    cv2.putText(imagecon, Last_op, ((x+w)+20,y+150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, soc_1, ((x+w)+30,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x+w)+60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 else:
                     cv2.line(imagecon, ((x), y), ((x)-20,y-20), (0 ,0 ,255), 1,)
                     cv2.line(imagecon, ((x)-20,y-20), ((x)-200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x)-200,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
+                    cv2.putText(imagecon, Last_op, ((x)-200,y+150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, soc_1, ((x)-100,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x)-60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 # cv2.moveWindow(imagecon, 0,0)
@@ -183,9 +186,10 @@ def qr_det():
                 num = int(data)
                 print("Serial: "+ str(num))
                 # cv2.putText(imagecon, str(num), ((x+w)+5, y), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0,0,240),1)
-                ser, soc = lg_r.info_read_vis(num)
+                ser, soc= lg_r.info_read_vis(num)
                 print("SOC: "+ str(soc))
                 ser  = "Serial: " + str(ser)
+                # Last_op = "L_OP: " + str(Last1_op)
                 pers=int(soc)
                 soc_1  = str(soc) +"%"
                 # cv2.putText(imagecon, ser, ((x+w)+5, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),1)
@@ -198,12 +202,14 @@ def qr_det():
                     cv2.line(imagecon, ((x+w), y), ((x+w)+20,y-20), (0 ,0 ,255), 1,)
                     cv2.line(imagecon, ((x+w)+20,y-20), ((x+w)+200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x+w)+20,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
+                    # cv2.putText(imagecon, Last_op, ((x+w)+20,y+25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, soc_1, ((x+w)+30,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x+w)+60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 else:
                     cv2.line(imagecon, ((x), y), ((x)-20,y-20), (0 ,0 ,255), 1,)
                     cv2.line(imagecon, ((x)-20,y-20), ((x)-200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x)-200,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
+                    # cv2.putText(imagecon, Last_op, ((x)-200,y+25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, soc_1, ((x)-100,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x)-60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
             except ValueError:
@@ -234,7 +240,7 @@ if __name__ == "__main__":
     # print("1. OCR Reader")
     # print("2. QR Reader")
     # user_selection=input("Please Select the Read Method: ")
-    
+
     cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture(0)
     # cap.set(3,600) # 3 is width setting id

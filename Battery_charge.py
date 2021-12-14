@@ -33,11 +33,12 @@
 #  '----------------'  '----------------'  '----------------'  '----------------'
 # repo: https://github.com/AzhaarMohidden/Battery_sort_V2.git
 # date: 31.03.2021
+# Update: 09.12.2021 (Patched Tech 4 list as dynam)
 # Prereq:
 #     1. xlxswriter
 #     2. pandas
 
-
+print("Collecting Prereqs........")
 import database as db
 import ascii_boards as ab
 import os
@@ -67,9 +68,10 @@ if __name__ == '__main__':
         print("2. Show Current Arrangment and Sorted Arrangments")
         print("3. Read Battery info.")
         print("4. Visual Read (Beta)")
-        print("5. Exit Programe")
+        print("5. Batteries in Tech4")
+        print("6. Exit Programe")
         p = str(input("Please Select one of the above: "))
-        if (p == "1" or p == "2" or p == "3" or p == "4" or p == "5"):
+        if (p == "1" or p == "2" or p == "3" or p == "4" or p == "5" or p == "6"):
             ans = int(p)
             print("Selected: "+ str(ans))
         if (ans == 1):
@@ -146,7 +148,7 @@ if __name__ == '__main__':
                 else:
                     print("Invalid selection..")
 
-        elif (ans == 5):
+        elif (ans == 6):
             print("Exiting Application")
             time.sleep(0.3)
             print("Saving and Closing")
@@ -168,6 +170,15 @@ if __name__ == '__main__':
 
             os.system("cls")
             os.system("python open2.py")
+            # ab.battery_sort()
+            # lg_r.info_read()
+            # print("")
+            # print("")
+        elif (ans == 5):
+
+            os.system("cls")
+            ab.battery_sort()
+            db.disp_tech4()
             # ab.battery_sort()
             # lg_r.info_read()
             # print("")

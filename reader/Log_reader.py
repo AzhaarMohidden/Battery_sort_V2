@@ -117,6 +117,7 @@ def read_text1_vis(fname, directory_file = "Batterieverzeichnis_new" ):
         if (prev_data[ll] == ""):
             prev_data[ll] = "0"
     Bat_Serial = last_data[0]
+    LastOperation = last_data[1]
     # LastOperation =  prev_data[3] + " - " + last_data[3]
     # LastOperationOn = last_data[1] + " @ " + last_data[2]
     # MAX_Error = last_data[19] + "%"
@@ -131,7 +132,7 @@ def read_text1_vis(fname, directory_file = "Batterieverzeichnis_new" ):
     #     print(str(m)+ " :- " + last_data[m])
     # # print(last_data)011
     # print("Raw Data********************************************")
-    return Bat_Serial, SOC
+    return Bat_Serial, SOC, LastOperation
     # return Bat_Serial,LastOperationOn, MAX_Error, SOC, SOH, last_charge_unit, last_charge_position, File_length
     # print("Last Operation-------- " + prev_data[3] + " - " + last_data[3])
     # print("Last Operation on ---- " + last_data[1] + " @ " + last_data[2] )
@@ -161,7 +162,8 @@ def info_read_vis(b):
     try:
         # print("Came")
         Fname = f_select_vis(b)
-        Batery_serial, soc = read_text1_vis(Fname)
+        Batery_serial, soc, LO = read_text1_vis(Fname)
+        # print(LO)
         # print("Serial: " + Batery_serial)
         # print("lstop: " + Lstop)
         # print("LsDate: " + lastopdadte)
@@ -174,7 +176,7 @@ def info_read_vis(b):
     except FileNotFoundError:
         print("")
         print("No battery with that serial: 009{Ser} Exists..".format(Ser = Fname))
-    return Batery_serial, soc
+    return Batery_serial, soc, LO
 
 # for i in log_file:
 #     print("Serial:- " + i)
