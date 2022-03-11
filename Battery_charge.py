@@ -59,7 +59,13 @@ def auto_reset():
     print("Pull done Reset to repo")
     time.sleep(10)
 
-
+def git_push():
+    os.system("git status")
+    os.system("git add .")
+    mess = """git commit -m "Regular push" """
+    os.system(mess)
+    os.system("git push")
+    print("Pull done Reset to repo")
 
 
 
@@ -97,9 +103,10 @@ if __name__ == '__main__':
         print("3. Read Battery info.")
         print("4. Visual Read (Beta)")
         print("5. Batteries in Tech4")
-        print("6. Exit Programe")
+        print("6. Update Local with Remote")
+        print("7. Exit Programe")
         p = str(input("Please Select one of the above: "))
-        if (p == "1" or p == "2" or p == "3" or p == "4" or p == "5" or p == "6"):
+        if (p == "1" or p == "2" or p == "3" or p == "4" or p == "5" or p == "6" or p == "7"):
             ans = int(p)
             print("Selected: "+ str(ans))
         if (ans == 1):
@@ -176,7 +183,14 @@ if __name__ == '__main__':
                 else:
                     print("Invalid selection..")
 
-        elif (ans == 6):
+        elif (ans == 7):
+            ans3 = str(input("Do you want upload New Battery Data to Remote? (Y/N) "))
+            if (ans3 == "y" or ans3 == "Y" or ans3 == "yes" or ans3 == "YES"):
+                git_push()
+                break
+            elif (ans3 == "n" or ans3 == "N" or ans3 == "no" or ans3 == "NO"):
+                print("Database not updated")
+                break
             print("Exiting Application")
             time.sleep(0.3)
             print("Saving and Closing")
@@ -211,6 +225,9 @@ if __name__ == '__main__':
             # lg_r.info_read()
             # print("")
             # print("")
+        elif (ans == 6):
+            os.system("git status")
+            os.system("git pull")
         else:
             print("Invalid Selection..")
             print("")
