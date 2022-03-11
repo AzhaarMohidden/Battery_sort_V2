@@ -58,8 +58,11 @@ def auto_reset():
     os.system("git checkout main Battery_charge.py")
     print("Pull done Reset to repo")
     time.sleep(10)
+    print("cls")
+
 
 def git_push():
+    auto_reset()
     os.system("git status")
     os.system("git add .")
     mess = """git commit -m "Regular push" """
