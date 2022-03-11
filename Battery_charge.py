@@ -190,7 +190,6 @@ if __name__ == '__main__':
                 break
             elif (ans3 == "n" or ans3 == "N" or ans3 == "no" or ans3 == "NO"):
                 print("Database not updated")
-                break
             print("Exiting Application")
             time.sleep(0.3)
             print("Saving and Closing")
