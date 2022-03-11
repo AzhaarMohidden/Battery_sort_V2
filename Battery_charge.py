@@ -79,9 +79,7 @@ def git_push():
 
 
 if __name__ == '__main__':
-    print('raise')
-    time.sleep(5)
-    # auto_reset()
+    auto_reset()
     db.rem_tech4()
     db.get_serial()
     db.printer_ins()
