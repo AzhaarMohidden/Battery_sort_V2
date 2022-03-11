@@ -57,7 +57,7 @@ def auto_reset():
     os.system("git status")
     os.system("git checkout main -- Battery_charge.py")
     print("Pull done Reset to repo")
-    time.sleep(10)
+    time.sleep(2)
     print("cls")
 
 
