@@ -1,9 +1,11 @@
 import os
 import sys
+from datetime import datetime
 # log_file = fn.list_dir(r'E:\Python\reader\Batterieverzeichnis')
 # fname = "E://Python/reader/Batterieverzeichnis/009768.txt"
 
 cwd = os.getcwd()
+date_now = datetime.now()
 
 def f_select():
     serial = str(input("Please input the Battery serial (e.g:- 456) :- "))
@@ -163,6 +165,13 @@ def info_read_vis(b):
         # print("Came")
         Fname = f_select_vis(b)
         Batery_serial, soc, LO = read_text1_vis(Fname)
+        dt = LO.split('.')
+        # print(dt)
+        ld = datetime(int(dt[2]), int(dt[1]), int(dt[0]),0,0,0,0)
+        difference = date_now - ld
+        difference = str(difference).split('d')
+        print(difference[0])
+
         # print(LO)
         # print("Serial: " + Batery_serial)
         # print("lstop: " + Lstop)
@@ -176,7 +185,7 @@ def info_read_vis(b):
     except FileNotFoundError:
         print("")
         print("No battery with that serial: 009{Ser} Exists..".format(Ser = Fname))
-    return Batery_serial, soc, LO
+    return Batery_serial, soc, LO, difference[0]
 
 # for i in log_file:
 #     print("Serial:- " + i)
