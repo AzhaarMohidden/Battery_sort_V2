@@ -53,6 +53,16 @@ from Max_Error import Write_error as ME
 
 now = datetime.now()
 
+def auto_reset():
+    os.system("git status")
+    os.system("git checkout main Battery_charge.py")
+    print("Pull done Reset to repo")
+    time.sleep(10)
+
+
+
+
+
 
 if __name__ == '__main__':
     db.rem_tech4()
@@ -63,22 +73,22 @@ if __name__ == '__main__':
     v = input("Press any key to continue..")
     os.system("cls")
     ab.battery_sort()
-    passw = str(input('INPUT Password: '))
-    # passw = '​' + passw
 
-    if (passw != str(AUTH_C[0])):
-        print("Wrong pin")
-        print("Exiting Application")
-        time.sleep(0.3)
-        # print("Saving and Closing")
-        print("")
-        with tqdm(total = 100) as pbar:
-            for up in range(100):
-                time.sleep(0.01)
-                pbar.update(1)
-        print("Done")
-        print("")
-        exit()
+    # passw = str(input('INPUT Password: '))
+    # passw = '​' + passw
+    # if (passw != str(AUTH_C[0])):
+    #     print("Wrong pin")
+    #     print("Exiting Application")
+    #     time.sleep(0.3)
+    #     # print("Saving and Closing")
+    #     print("")
+    #     with tqdm(total = 100) as pbar:
+    #         for up in range(100):
+    #             time.sleep(0.01)
+    #             pbar.update(1)
+    #     print("Done")
+    #     print("")
+    #     exit()
 
     while(1):
         ans = 0
