@@ -64,18 +64,23 @@ def auto_reset():
 def git_push():
 
     os.system("git status")
+    time.sleep(1)
     os.system("git add .")
+    time.sleep(2)
     mess = """git commit -m "Regular push" """
     os.system(mess)
+    time.sleep(2)
     os.system("git push")
+    time.sleep(5)
     print("Pull done Reset to repo")
+    time.sleep(5)
 
 
 
 
 if __name__ == '__main__':
     print('raise')
-    time.sleep(20)
+    time.sleep(5)
     # auto_reset()
     db.rem_tech4()
     db.get_serial()
