@@ -55,7 +55,7 @@ now = datetime.now()
 
 def auto_reset():
     os.system("git status")
-    os.system("git checkout main Battery_charge.py")
+    os.system("git checkout main -- Battery_charge.py")
     print("Pull done Reset to repo")
     time.sleep(10)
     print("cls")
@@ -74,7 +74,9 @@ def git_push():
 
 
 if __name__ == '__main__':
-    auto_reset()
+    print('raise')
+    time.sleep(20)
+    # auto_reset()
     db.rem_tech4()
     db.get_serial()
     db.printer_ins()
