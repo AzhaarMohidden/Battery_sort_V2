@@ -62,7 +62,7 @@ def auto_reset():
 
 
 def git_push():
-    auto_reset()
+
     os.system("git status")
     os.system("git add .")
     mess = """git commit -m "Regular push" """
@@ -74,6 +74,7 @@ def git_push():
 
 
 if __name__ == '__main__':
+    auto_reset()
     db.rem_tech4()
     db.get_serial()
     db.printer_ins()
