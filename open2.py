@@ -242,13 +242,13 @@ sh = 0
 r=0
 is_alive = 1
 real_rate = 0
-
+camera_num = 0
 if __name__ == "__main__":
     # print("1. OCR Reader")
     # print("2. QR Reader")
     # user_selection=input("Please Select the Read Method: ")
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(camera_num)
     # cap = cv2.VideoCapture(0)
     # cap.set(3,600) # 3 is width setting id
     # cap.set(4,400) # 4 is height setting id
@@ -268,7 +268,20 @@ if __name__ == "__main__":
         # imgresize = cv2.resize(img,(640, 480)) #Resize image
         imgresize = img #Resize image
         # imgresize = cv2.resize(img,(1920, 1080)) #Resize image
-        imagecon = imgresize.copy()
+        try:
+            imagecon = imgresize.copy()
+        except:
+            camera_num = 1
+            cap = cv2.VideoCapture(camera_num)
+            # cap = cv2.VideoCapture(0)
+            # cap.set(3,600) # 3 is width setting id
+            # cap.set(4,400) # 4 is height setting id
+            cap.set(10, 200) # 10 is bightness setting id
+            # kernel = np.ones((5,5),np.uint8) #for dilation matrix
+            success, img = cap.read()
+            # imgresize = cv2.resize(img,(640, 480)) #Resize image
+            imgresize = img #Resize image
+            imagecon = imgresize.copy()
 
         # grey = gry_img(imgresize)
         # g_blur = Gausian_Blur(grey,7,7,0)
