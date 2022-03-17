@@ -57,7 +57,7 @@ def shape_def(source, gray):
             r = 1
         global det_num
         if(50>r>0):
-            cropped = imagecon[y:y + h, x:x + w]
+            # cropped = imagecon[y:y + h, x:x + w]
             cropped = gray[y+4:y + h-4, x+4:x + w-4]
             # cv2.rectangle(imagecon, (x, y), (x + w, y + h), (0 ,0 ,255), 2,)
             shape = "Qadrilateral"
@@ -72,11 +72,10 @@ def shape_def(source, gray):
                 print("SOC: "+ str(soc))
                 ser  = "Serial: " + str(ser)
                 Last_op  = "L-OP: " + str(Last_op)
-                # SU_C = int(SU)
+                SU_C = int(SU)
                 SU = str(SU) + " days ago"
                 pers=int(soc)
                 soc_1  = str(soc) +"%"
-                print('came here')
                 # cv2.putText(imagecon, ser, ((x+w)+5, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),1)
                 # cv2.putText(imagecon, soc, ((x+w)+5, y+50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),1)
                 pow = pers*3.6
@@ -88,7 +87,7 @@ def shape_def(source, gray):
                     cv2.line(imagecon, ((x+w)+20,y-20), ((x+w)+200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x+w)+20,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, Last_op, ((x+w)+20,y+150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
-                    # cv2.putText(imagecon, SU, ((x+w)+20,y+200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,25.5*SU_C),2)
+                    cv2.putText(imagecon, SU, ((x+w)+20,y+200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,25.5*SU_C),2)
                     cv2.putText(imagecon, soc_1, ((x+w)+30,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x+w)+60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 else:
@@ -96,7 +95,7 @@ def shape_def(source, gray):
                     cv2.line(imagecon, ((x)-20,y-20), ((x)-200,y-20), (0 ,0 ,255), 1,)
                     cv2.putText(imagecon, ser, ((x)-200,y-25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.putText(imagecon, Last_op, ((x)-200,y+200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
-                    # cv2.putText(imagecon, SU, ((x)-200,y+250), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,25.5*SU_C),2)
+                    cv2.putText(imagecon, SU, ((x)-200,y+250), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,25.5*SU_C),2)
                     cv2.putText(imagecon, soc_1, ((x)-100,y+50+6), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
                     cv2.ellipse(imagecon, ((x)-60,y+50), (50, 50), 0, 0, pow, (31, 81, 255), 3)
                 # cv2.moveWindow(imagecon, 0,0)
@@ -104,7 +103,6 @@ def shape_def(source, gray):
                 # cv2.imshow('cropped', cropped)
 
             except:
-                print('except')
                 pass
             # text.strip("?")
             # print("x: " + str(x) + "y: " + str(y) + "w: " + str(w) +"h: " + str(h) )
@@ -244,13 +242,13 @@ sh = 0
 r=0
 is_alive = 1
 real_rate = 0
-
+camera_num = 0
 if __name__ == "__main__":
     # print("1. OCR Reader")
     # print("2. QR Reader")
     # user_selection=input("Please Select the Read Method: ")
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(camera_num)
     # cap = cv2.VideoCapture(0)
     # cap.set(3,600) # 3 is width setting id
     # cap.set(4,400) # 4 is height setting id
@@ -267,10 +265,23 @@ if __name__ == "__main__":
     while True:
         f=f+1
         success, img = cap.read()
-        imgresize = cv2.resize(img,(640, 480)) #Resize image
-        # imgresize = img #Resize image
+        # imgresize = cv2.resize(img,(640, 480)) #Resize image
+        imgresize = img #Resize image
         # imgresize = cv2.resize(img,(1920, 1080)) #Resize image
-        imagecon = imgresize.copy()
+        try:
+            imagecon = imgresize.copy()
+        except:
+            camera_num = 1
+            cap = cv2.VideoCapture(camera_num)
+            # cap = cv2.VideoCapture(0)
+            # cap.set(3,600) # 3 is width setting id
+            # cap.set(4,400) # 4 is height setting id
+            cap.set(10, 200) # 10 is bightness setting id
+            # kernel = np.ones((5,5),np.uint8) #for dilation matrix
+            success, img = cap.read()
+            # imgresize = cv2.resize(img,(640, 480)) #Resize image
+            imgresize = img #Resize image
+            imagecon = imgresize.copy()
 
         # grey = gry_img(imgresize)
         # g_blur = Gausian_Blur(grey,7,7,0)
