@@ -63,7 +63,7 @@ def shape_def(source, gray):
             shape = "Qadrilateral"
             # cv2.putText(imagecon, shape, ((x+w)+5, y), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1, (0,0,240),1)
             text = str(pytesseract.image_to_string(cropped))
-            print("tes: "+ text)
+            # print("tes: "+ text)
             try:
                 num = int(text)
                 print("Serial: "+ str(num))
